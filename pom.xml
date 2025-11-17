@@ -22,6 +22,32 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>GiovanniCaggianella</id>
+            <name>Giovanni Caggianella</name>
+            <email>giovanni.caggianella93@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:GiovanniCaggianella/spring-boot-starter-toon.git</connection>
+        <developerConnection>scm:git:git@github.com:GiovanniCaggianella/spring-boot-starter-toon.git</developerConnection>
+        <url>https://github.com/GiovanniCaggianella/spring-boot-starter-toon</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>14</maven.compiler.source>
