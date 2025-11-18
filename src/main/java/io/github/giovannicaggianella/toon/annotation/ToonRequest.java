@@ -10,14 +10,14 @@ import java.lang.annotation.Target;
  * Marks a method parameter as a TOON-formatted request body.
  * Automatically deserializes TOON format to the target object using JToon.
  *
- * Usage:
- * <pre>
+ * <p>Example usage:
+ * {@code
  * @PostMapping("/users")
  * public ResponseEntity<User> createUser(@ToonRequest User user) {
  *     // user is automatically deserialized from TOON format
  *     return ResponseEntity.ok(user);
  * }
- * </pre>
+ * }
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -25,12 +25,18 @@ import java.lang.annotation.Target;
 public @interface ToonRequest {
 
     /**
-     * Optional custom name for the request body parameter.
+     * The name of the request parameter to bind to.
+     * If not specified, the parameter name will be used.
+     *
+     * @return the name of the request parameter
      */
     String name() default "";
 
     /**
-     * Whether the request body is required.
+     * Whether the parameter is required.
+     * If true, an exception will be thrown if the parameter is missing.
+     *
+     * @return true if the parameter is required
      */
     boolean required() default true;
 

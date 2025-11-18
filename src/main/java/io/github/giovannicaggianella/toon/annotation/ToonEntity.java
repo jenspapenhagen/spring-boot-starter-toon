@@ -16,13 +16,18 @@ import java.lang.annotation.Target;
 public @interface ToonEntity {
 
     /**
-     * Entity name for TOON serialization.
-     * If not specified, the class name is used.
+     * The name of the entity for TOON serialization.
+     * If not specified, the simple class name is used.
+     *
+     * @return the name of the entity
      */
     String name() default "";
 
     /**
-     * Entity description.
+     * The description of the entity.
+     * This is used for documentation purposes only.
+     *
+     * @return the description of the entity
      */
     String description() default "";
 
