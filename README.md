@@ -20,7 +20,7 @@ Add the following dependency to your Maven project:
 <dependency>
     <groupId>io.github.giovannicaggianella</groupId>
     <artifactId>spring-boot-starter-toon</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
