@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring Boot auto-configuration for Toon.
+ * Spring Boot autoconfiguration for Toon.
  * Automatically registers beans required for TOON serialization using JToon.
  */
 @Configuration

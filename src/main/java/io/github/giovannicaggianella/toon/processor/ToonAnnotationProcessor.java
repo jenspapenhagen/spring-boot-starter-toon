@@ -1,9 +1,10 @@
 package io.github.giovannicaggianella.toon.processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.felipestanzani.jtoon.Delimiter;
-import com.felipestanzani.jtoon.EncodeOptions;
-import com.felipestanzani.jtoon.JToon;
+import dev.toonformat.jtoon.Delimiter;
+import dev.toonformat.jtoon.EncodeOptions;
+import dev.toonformat.jtoon.JToon;
+
 
 /**
  * Processes TOON annotations and handles serialization/deserialization of TOON format.
@@ -41,7 +42,7 @@ public class ToonAnnotationProcessor {
         if (!lengthMarker) {
             return encode(object);
         }
-        EncodeOptions options = new EncodeOptions(2, Delimiter.COMMA, true);
+        EncodeOptions options = new EncodeOptions(2, Delimiter.COMMA, true, false, 3);
         return JToon.encode(object, options);
     }
 
