@@ -1,26 +1,25 @@
 package io.github.giovannicaggianella.toon.processor;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.github.giovannicaggianella.toon.annotation.ToonResponse;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.JacksonJsonHttpMessageConverter;
+import org.springframework.http.server.ServerHttpResponse;
 
-import java.lang.reflect.Method;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.core.MethodParameter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.server.ServerHttpResponse;
-
-import io.github.giovannicaggianella.toon.annotation.ToonResponse;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ToonResponseBodyAdviceTest {
 
@@ -35,7 +34,7 @@ public class ToonResponseBodyAdviceTest {
     public void supportsReturnsTrueForAnnotatedMethod() throws NoSuchMethodException {
         MethodParameter parameter = methodParameter("annotatedEndpoint");
 
-        boolean supported = advice.supports(parameter, MappingJackson2HttpMessageConverter.class);
+        boolean supported = advice.supports(parameter, JacksonJsonHttpMessageConverter.class);
 
         assertThat(supported).isTrue();
     }
@@ -48,7 +47,7 @@ public class ToonResponseBodyAdviceTest {
         body.put("tags", Arrays.asList("dev", "ops"));
 
         Object result = advice.beforeBodyWrite(body, parameter, MediaType.APPLICATION_JSON,
-                MappingJackson2HttpMessageConverter.class, null, response);
+                JacksonJsonHttpMessageConverter.class, null, response);
 
         assertThat(response.getHeaders().getContentType()).isEqualTo(MediaType.parseMediaType("application/toon"));
         assertThat(result).isInstanceOf(String.class);
@@ -62,7 +61,7 @@ public class ToonResponseBodyAdviceTest {
         List<String> body = Arrays.asList("a", "b");
 
         Object result = advice.beforeBodyWrite(body, parameter, MediaType.APPLICATION_JSON,
-                MappingJackson2HttpMessageConverter.class, null, response);
+                JacksonJsonHttpMessageConverter.class, null, response);
 
         assertThat(result).isSameAs(body);
         assertThat(response.getHeaders().getContentType()).isNull();
@@ -90,11 +89,6 @@ public class ToonResponseBodyAdviceTest {
         private final HttpHeaders headers = new HttpHeaders();
 
         @Override
-        public void setStatusCode(HttpStatus status) {
-            // not needed for these tests
-        }
-
-        @Override
         public HttpHeaders getHeaders() {
             return headers;
         }
@@ -102,6 +96,11 @@ public class ToonResponseBodyAdviceTest {
         @Override
         public OutputStream getBody() throws IOException {
             return new ByteArrayOutputStream();
+        }
+
+        @Override
+        public void setStatusCode(HttpStatusCode status) {
+            // not needed for these tests
         }
 
         @Override
