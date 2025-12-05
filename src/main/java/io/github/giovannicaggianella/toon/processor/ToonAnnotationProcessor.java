@@ -1,9 +1,9 @@
 package io.github.giovannicaggianella.toon.processor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.toonformat.jtoon.Delimiter;
 import dev.toonformat.jtoon.EncodeOptions;
 import dev.toonformat.jtoon.JToon;
+import tools.jackson.databind.ObjectMapper;
 
 
 /**
@@ -34,7 +34,7 @@ public class ToonAnnotationProcessor {
     /**
      * Encodes a Java object to TOON format with optional length markers.
      *
-     * @param object the object to encode
+     * @param object       the object to encode
      * @param lengthMarker whether arrays should be prefixed with a length marker
      * @return the TOON string representation of the object
      */
@@ -49,8 +49,8 @@ public class ToonAnnotationProcessor {
     /**
      * Decodes a TOON string to a Java object of the specified class.
      *
-     * @param <T> the type of the target object
-     * @param toon the TOON string to decode
+     * @param <T>   the type of the target object
+     * @param toon  the TOON string to decode
      * @param clazz the target class
      * @return the decoded object
      * @throws IllegalArgumentException if the TOON string is invalid or cannot be decoded to the target class
