@@ -10,7 +10,7 @@ Spring Boot Starter for TOON format serialization/deserialization using JToon.
 - Seamless Spring Boot integration for TOON serialization/deserialization
 - Custom annotation support
 - Automatic configuration with Spring Boot Auto-Configuration
-- Java 14+ compatible
+- Java 17+ compatible
 
 ## 📦 Installation
 
